@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xy</groupId>
+  <artifactId>Coroutine-Test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+   <dependencies>
+  	<dependency>
+	    <groupId>com.offbynull.coroutines</groupId>
+	    <artifactId>user</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+  </dependencies>
+  <build>
+  <plugins>
+	  <plugin>
+    <groupId>com.offbynull.coroutines</groupId>
+    <artifactId>maven-plugin</artifactId>
+    <version>1.4.0</version>
+    <executions>
+        <!-- Instruments main classes at process-classes phase -->        
+        <execution>
+            <id>coroutines-instrument-id</id>
+            <goals>
+                <goal>instrument</goal>
+            </goals>
+        </execution>
+        <!-- Instruments test classes at process-test-classes phase -->
+        <execution>
+            <id>test-coroutines-instrument-id</id>
+            <goals>
+                <goal>test-instrument</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <!-- Uncomment if you'll be stepping through your coroutines in an IDE. -->
+        <!-- <debugMode>true</debugMode> -->
+    </configuration>
+	</plugin>
+	<plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<classpathPrefix>lib/</classpathPrefix>
+						<mainClass>com.delta.coroutine.LunchMain</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+	</plugin>
+  </plugins>
+</build>
+</project>
