@@ -24,3 +24,4 @@ Examples:
 Here is performance report
 <p align="center"><img src ="performance.png"  /></p>
 
+From the result showed, we can have a clear answer, if there are existing huge thread in your application and many of them are blocked. In this scenario coroutine model have much better performance than the tradicational model.
