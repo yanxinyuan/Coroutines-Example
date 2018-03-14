@@ -1,40 +1,26 @@
 
-The example of Coroutines in java was using https://github.com/offbynull/coroutines
+The example of Coroutines in java was using [coroutines](https://github.com/offbynull/coroutines) 
+
+You can use this example to compare the performance between the tradinational thread model with coroutines model.
 
 ### Step 1
 mvn clean install
 
 ### Step 2
-java -jar target\Coroutine-Test-0.0.1-SNAPSHOT.jar
+Examples
+java -jar target\coroutine-model-jar-with-dependencies.jar
 
-The result might be this.
-#### 
-    initiate 1 tasks  
-    initiate 2 tasks  
-    initiate 3 tasks  
-    1 start doing something  
-    1 is doing now  
-    1 start suspend  
-    initiate 4 tasks  
-    2 start doing something  
-    2 is doing now  
-    2 start suspend  
-    3 start doing something  
-    3 is doing now  
-    3 start suspend  
-    4 start doing something  
-    4 is doing now  
-    4 start suspend  
-    1 recover and finish  
-    2 is doing again  
-    2 start suspend again  
-    initiate 5 tasks  
-    5 start doing something  
-    5 is doing now  
-    5 start suspend  
-    3 recover and finish  
-    4 is doing again  
-    4 start suspend again  
-    2 recover and finish  
-    5 recover and finish  
-    4 recover and finish  
+Usage: java -jar jarfile [args...]
+       (to execute a jar file)
+where args include:
+         first : simulator task count, default is 1000
+        second : io waiting time for each task, default is 10ms
+         third : max thread to handle the task when using thread model, default is 200
+                 coroutine model will ignore this parameter
+Examples:
+          java -jar thread-model-jar-with-dependencies.jar 1000 10 200
+          java -jar coroutine-model-jar-with-dependencies.jar 1000 10
+
+Here is performance report
+
+
