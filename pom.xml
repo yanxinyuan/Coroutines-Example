@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xy</groupId>
-  <artifactId>Coroutine-Test</artifactId>
+  <artifactId>Coroutines-Example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
    <dependencies>
   	<dependency>
@@ -37,32 +37,59 @@
         <!-- <debugMode>true</debugMode> -->
     </configuration>
 	</plugin>
-	<plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>install</phase>
-                <goals>
-                  <goal>copy-dependencies</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
 		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<configuration>
-				<archive>
-					<manifest>
-						<addClasspath>true</addClasspath>
-						<classpathPrefix>lib/</classpathPrefix>
-						<mainClass>com.delta.coroutine.LunchMain</mainClass>
-					</manifest>
-				</archive>
-			</configuration>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-jar-plugin</artifactId>
+	        <version>2.4</version>
+	        <executions>
+	          <execution>
+	            <id>default-jar</id>
+	            <phase/>
+	          </execution>
+	        </executions>
+	      </plugin>
+		<plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<executions>
+				<execution>
+		            <id>build-1</id>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<mainClass>com.xy.coroutine.CoroutineMain</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+		              	</descriptorRefs>
+						<finalName>coroutine-model</finalName>
+					</configuration>
+					<phase>package</phase>
+		            <goals>
+		                <goal>single</goal>
+		            </goals>
+				</execution>
+				<execution>
+		            <id>build-2</id>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<mainClass>com.xy.thread.ThreadMain</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+		              	</descriptorRefs>
+						<finalName>thread-model</finalName>
+					</configuration>
+					<phase>package</phase>
+		            <goals>
+		                <goal>single</goal>
+		            </goals>
+				</execution>
+		  </executions>
 	</plugin>
   </plugins>
 </build>
