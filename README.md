@@ -22,5 +22,5 @@ Examples:
           java -jar coroutine-model-jar-with-dependencies.jar 1000 10
 
 Here is performance report
-
+<p align="center"><img src ="performance.png"  /></p>
 
