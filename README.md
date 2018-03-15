@@ -7,8 +7,9 @@ You can use this example to compare the performance between the tradinational th
 mvn clean install
 
 ### Step 2
-Examples   
-java -jar target\coroutine-model-jar-with-dependencies.jar   
+Examples   
+```
+java -jar target\coroutine-model-jar-with-dependencies.jar   
 
 Usage: java -jar jarfile [args...]    
        (to execute a jar file)    
@@ -20,7 +21,7 @@ where args include:
 Examples:    
           java -jar thread-model-jar-with-dependencies.jar 1000 10 200    
           java -jar coroutine-model-jar-with-dependencies.jar 1000 10    
-
+```
 Here is performance report    
 <p align="center"><img src ="performance.png"  /></p>
 
