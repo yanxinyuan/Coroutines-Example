@@ -16,8 +16,6 @@
  */
 package com.xy.coroutine;
 
-import java.util.concurrent.TimeUnit;
-
 import com.offbynull.coroutines.user.Continuation;
 import com.offbynull.coroutines.user.Coroutine;
 import com.xy.io.Simulator;
