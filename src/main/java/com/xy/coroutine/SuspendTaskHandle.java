@@ -63,7 +63,9 @@ public class SuspendTaskHandle {
 					String id = notifys.take();
 					CoroutineRunner runner = suspendTask.get(id);
 					if (runner == null) {
-						throw new RuntimeException("Do not found this task id, maybe io_waiting time is too short");
+						System.err.println("warn : The id : " + id + " didn't exist in suspend task but has been notified, it seems the io_waiting time is too short");
+						notifys.put(id);
+						continue;
 					}
 					// if not finish which means the method may have multiple DI
 					boolean notFinish = runner.execute();
